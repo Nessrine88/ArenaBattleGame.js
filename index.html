@@ -34,6 +34,18 @@
 </head>
 
 <body>
-    <!-- your html -->
+    <header style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 20px; background-color: white;margin: auto;">
+        <h1>Battle Team Arena</h1>
+        <nav style="margin-top: 10px;">
+            <a href="#" class="nav-item" data-page-id="all-heroes">All heroes</a>
+            <a href="#" class="nav-item" data-page-id="draft">Go to the arena</a>
+            <a href="#" class="nav-item" data-page-id="hall-of-fame">Hall of fame</a>
+        </nav>
+    </header>
+    <main>
+        <div id="all-heroes" class="page">Content for All Heroes</div>
+        <div id="draft" class="page" style="display: none;">Content for Arena</div>
+        <div id="hall-of-fame" class="page" style="display: none;">Content for Hall of Fame</div>
+    </main>
 </body>
 </html>
