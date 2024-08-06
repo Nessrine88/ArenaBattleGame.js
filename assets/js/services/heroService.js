@@ -1,23 +1,23 @@
 
-function getHeroes(){
-    
-   
+
+function getHeroes(heroes){   
+return heroes
 }
 
-function getGoodHeroes(){
-    
+function getGoodHeroes(heroes){
+  return heroes.filter(hero => hero.biography.alignment === "good");
 }
 
-function getBadHeroes(){
-    
+function getBadHeroes(heroes){
+    return heroes.filter(hero => hero.biography.alignment === "bad")
 }
 
 function getHeroesBasedOnAlignment(alignment, heroes){
-    
+  return heroes.filter(hero => hero.biography.alignment === alignment);
 }
 
 function isPartOfAligment(hero, alignment){
-    
+  return hero.biography.alignment === alignment;
 }
 
 
@@ -38,10 +38,13 @@ function calculatePriority(hero) {
       return  Math.ceil(calculateDefense(hero) + calculateAttack(hero) + calculatePriority(hero))
   }
 
-function getfilteredHeroes() {}
+function getfilteredHeroes() {
+  
+}
  
 function getRaces(){
-    
+  let races = heroes.map(hero => hero.appearance.race);
+  return [...new Set(races)];
 }
 
 function getRandomHeroes(heroes, amount) {
@@ -50,12 +53,12 @@ function getRandomHeroes(heroes, amount) {
 }
 
 function lookupHeroes(ids) {
-    
+  return ids.map(id => heroes.find(hero => hero.id === id));
 }
 
 function lookupHero(id){
-    
-    
+  return heroes.find(hero => hero.id === id); 
 }
 
 /* your functions */
+

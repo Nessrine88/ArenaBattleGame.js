@@ -1,25 +1,25 @@
-import _heroData from "../data/heroes.js";
+
+let heroesArray = heroes();
 
 document.addEventListener('DOMContentLoaded', () => {
-    render_heroData('#heroes-list', _heroData);
-    render_heroData('.draft-heroes-list', _heroData);
+   
+    render_heroData('#heroes-list', heroes());
+    render_heroData('.draft-heroes-list', heroesArray);
 });
 
-function render_heroData(selector, _heroData) {
+function render_heroData(selector, heroesArray) {
     const container = document.querySelector(selector);
-    
-    if (!container) {
-        console.error(`No element found with selector: ${selector}`);
-        return;
-    }
+
 
     container.innerHTML = '';
-
-    _heroData.forEach(hero => {
-        const heroItemHtml = renderHeroItem(hero);
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = heroItemHtml;
-        renderHero(container, tempDiv.firstElementChild);
+     const selectionHeroes = heroesArray.slice(0,getConfigSelection());
+    selectionHeroes.forEach(hero => {
+        const heroItem = renderHeroItem(hero);
+        const heroDiv = document.createElement('div');
+        heroDiv.innerHTML = heroItem;
+        const heroElement = heroDiv.firstElementChild;
+        if (selector === '.draft-heroes-list') heroElement.classList.add('draft-card')
+        renderHero(container, heroDiv.firstElementChild);
     });
 }
 
@@ -77,4 +77,4 @@ function renderHeroItem(hero) {
     `;
 }
 
-getRandomHeroes(_heroData,3);
+getRandomHeroes(heroesArray);

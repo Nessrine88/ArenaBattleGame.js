@@ -2,17 +2,6 @@ body {
     background-image: url('../media/bg.jpg');
   }
 
-  /* General Styles */
-/* :root {
-  --gap: calc(80vw - (150px * 5 / 4));
-}
-
-#opponent-cards{
-  display: grid;
-  grid-template-columns: repeat(5, 150px);
-  gap: var(--gap);
-} */
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -32,10 +21,6 @@ body {
     text-decoration: underline;
   }
   
-  nav a:visited {
-    color: green;
-    text-decoration: underline;
-  }
 
   /* Container for the list of heroes */
   #heroes-list {
@@ -166,13 +151,13 @@ body {
     display: none;
   }
 
-  .battle-card.selected {
+  .draft-card.selected {
     border-color: #4caf50;
     filter: brightness(1.2);
     background-color: rgba(7, 238, 18, 0.1);
 }
 
-.battle-card.selected .final-stats img {
+.draft-card.selected .final-stats img {
   display: block;
 }
 

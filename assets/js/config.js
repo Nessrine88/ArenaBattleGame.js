@@ -1,5 +1,5 @@
 const _configSettings = {
-    "selection": 394, // max amount random chosen heroes to show on the All heroes page and to choose from to make a booster pack, be sure that the selection is a least 2 times the amount of heroes in a booster pack
+    "selection": 200, // max amount random chosen heroes to show on the All heroes page and to choose from to make a booster pack, be sure that the selection is a least 2 times the amount of heroes in a booster pack
     "booster": 15, // amount of random chosen heroes in a booster pack , this value must be less or equal half the size of the selection
     "amount": 5, // amount of heroes that can be chosen from a booster pack, must be less than amount of heroes in the booster setting
     "hallOfFame": 10, // max amount of heroes in the hall of fame,
