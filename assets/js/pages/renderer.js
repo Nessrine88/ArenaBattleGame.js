@@ -71,29 +71,10 @@ function renderHeroItem(hero) {
                 <div>
                     <img src="https://www.freeiconspng.com/thumbs/check-mark-png/checkmark-png-line-29.png" />
                 </div>
-                <div>${calculateAttackValue(hero)} / ${calculateDefenseValue(hero)}</div>
+                <div>${calculateAttack(hero)} / ${calculateDefense(hero)}</div>
             </div>
         </div>
     `;
 }
 
-function calculateCost(hero) {
-    const defenseValue = calculateDefenseValue(hero);
-    const attackValue = calculateAttackValue(hero);
-    const priorityValue = calculatePriority(hero);
-    return Math.ceil(defenseValue + attackValue + priorityValue);
-}
-
-function calculateDefenseValue(hero) {
-    return Math.ceil((hero.powerstats.intelligence + hero.powerstats.durability + hero.powerstats.speed) / 30);
-}
-
-function calculateAttackValue(hero) {
-    return Math.ceil((hero.powerstats.strength + hero.powerstats.combat + hero.powerstats.power) / 30);
-}
-
-function calculatePriority(hero) {
-    const height = hero.appearance.height[1] ? parseInt(hero.appearance.height[1]) : 0;
-    const weight = hero.appearance.weight[1] ? parseInt(hero.appearance.weight[1]) : 0;
-    return Math.ceil((height + weight) / 50);
-}
+getRandomHeroes(_heroData,3);
