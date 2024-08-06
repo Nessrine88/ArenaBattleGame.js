@@ -17773,3 +17773,5 @@ const _heroData = [
         }
     }
 ]
+
+export default _heroData;
