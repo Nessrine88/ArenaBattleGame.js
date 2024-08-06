@@ -34,15 +34,82 @@
 </head>
 
 <body>
-    <header style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 20px; background-color: white;margin: auto;">
-        <h1>Battle Team Arena</h1>
-        <nav style="margin-top: 10px;">
+    <header style="background-color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); position: relative; z-index: 1000;">
+        <h1 style="display: flex; justify-content: center; font-size: 40px; padding: 30px;">Battle Team Arena</h1>
+        <nav style="display: flex; justify-content: center; padding-bottom: 40px;">
             <a href="#" class="nav-item" data-page-id="all-heroes">All heroes</a>
             <a href="#" class="nav-item" data-page-id="draft">Go to the arena</a>
             <a href="#" class="nav-item" data-page-id="hall-of-fame">Hall of fame</a>
         </nav>
     </header>
-    <main>
+    <main style="background-color: white; height: 80%; max-width: fit-content; margin: 0 auto 50px auto;min-width: 90vw;">
+        <div id="all-heroes" class="page" style="background-color: white; width: 100%;">
+            <form id="hero-filter-form">
+                <div style="display: flex; flex-direction: column; align-items: center; width: 90vw; margin: auto;">
+                    <div style="padding: 40px 0 20px 0; display: inline-block; background-color: white; width: 90vw; margin: auto; text-align: center;">
+                        <label for="hero-filter" style="margin-right: 10px;">Name</label>
+                        <input type="text" id="hero-filter" placeholder="Filter heroes by name...">
+            
+                        <!-- Implement Hero Filter by their race and alignment -->
+                        <label for="race-dropdown" style="margin-right: 5px; margin-left: 5px;">Race</label>
+                        <select id="race-dropdown">
+                            <option value="All">- All -</option>
+                                    <option value="Alien">Alien</option>
+                                    <option value="Android">Android</option>
+                                    <option value="Asgardian">Asgardian</option>
+                                    <option value="Cyborg">Cyborg</option>
+                                    <option value="Czarnian">Czarnian</option>
+                                    <option value="Demi-God">Demi-God</option>
+                                    <option value="Flora Colossus">Flora Colossus</option>
+                                    <option value="God / Eternal">God / Eternal</option>
+                                    <option value="Human">Human</option>
+                                    <option value="Human / Altered">Human/Altered</option>
+                                    <option value="Human/Radiation">Human/Radiation</option>
+                                    <option value="Human-Kree">Human-Kree</option>
+                                    <option value="Kakarantharaian">Kakarantharaian</option>
+                                    <option value="Luphomoid">Luphomoid</option>
+                                    <option value="Mutant">Mutant</option>
+                                    <option value="Rodian">Rodian</option>
+                                    <option value="Saiyan">Saiyan</option>
+                                    <option value="Symbiote">Symbiote</option>
+                        </select>
+            
+                        <label>
+                            <input type="checkbox" id="alignment-good" value="good"> Good
+                        </label>
+                        <label>
+                            <input type="checkbox" id="alignment-bad" value="bad"> Bad
+                        </label>
+                        <label>
+                            <input type="checkbox" id="alignment-neutral" value="neutral"> Neutral
+                        </label>
+                        <!-- Implement Hero Filter by their attributes -->
+                        <label for="attribute-dropdown" style="margin-left: 10px;">Order by</label>
+                        <select id="attribute-dropdown">
+                            <option value="id">Id</option>
+                            <option value="name">Name</option>
+                            <option value="appearance.race">Race</option>
+                            <option value="biography.alignment">Alignment</option>
+                            <option value="cost">Cost</option>
+                            <option value="priority">Priority</option>
+                        </select>
+            
+                        <!-- Added filter of sorting for Ascending and Descending -->
+                        <label for="sort-dropdown">Sort</label>
+                        <select id="sort-dropdown">
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+            
+                        <button style="margin-left: 10px; font-size: 16px; padding: 5px 15px;border: 2px solid rgb(223, 216, 216);" id="filter-button">Filter</button>
+                    </div>
+                </div>
+            </form>
+        
+            <div class="heroes-list" style="display: flex; justify-content: space-between; width: 90vw; flex-wrap: wrap; padding: 20px; gap: 5px;">
+                <!-- Heroes will be dynamically added here -->
+            </div>
+        </div>
         <div id="all-heroes" class="page">Content for All Heroes</div>
         <div id="draft" class="page" style="display: none;">Content for Arena</div>
         <div id="hall-of-fame" class="page" style="display: none;">Content for Hall of Fame</div>
