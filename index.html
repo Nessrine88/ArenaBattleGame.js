@@ -42,7 +42,7 @@
             <a href="#" class="nav-item" data-page-id="hall-of-fame">Hall of fame</a>
         </nav>
     </header>
-    <main style="background-color: white; height: 80%; max-width: fit-content; margin: 0 auto 50px auto;min-width: 90vw;">
+    <main style="background-color: white; height: 80%; max-width: fit-content; margin: 0 auto 50px auto;min-width: 90vw; flex-direction: column;">
         <div id="all-heroes" class="page" style="background-color: white; width: 100%;">
             <form id="hero-filter-form">
                 <div style="display: flex; flex-direction: column; align-items: center; width: 90vw; margin: auto;">
@@ -121,18 +121,18 @@
                 <span id="bad-count">(0)</span>
             </div>
     <div style="display: flex; justify-content: center; margin: 40px 0;">
-        <button data-page-id="start-draft" class="nav-item" style="text-align: center; width: 20%; margin: 0 auto; padding: 20px 0; background-color: rgba(57, 237, 120, 0.5); border: 1px solid blue;">Start Draft</button>
+        <button data-page-id="start-draft" class="nav-item" style="text-align: center; width: 20%; margin:0 auto 20px auto; padding: 20px 0; background-color: rgba(57, 237, 120, 0.5); border: 1px solid blue;">Start Draft</button>
     </div>
          
         </div>
-        <div id="start-draft" class="page" style="display: none; flex-direction: column; padding-top: 40px;">
+        <div id="start-draft" class="page" style="display: none; flex-direction: column; padding: 40px 0;">
    
 
 
 
         <h3 style="text-align: center; width: 50%; margin: 0 auto;flex-direction: column;">Open your booster pack and draft your heroes</h3>
         <div style="display: flex; justify-content: center; margin: 40px 0;">
-            <button style="text-align: center; width: 20%; margin: 0 auto; padding: 20px 0; background-color: pink; border: 1px solid pink;" onclick="showPage('fight')" id="start-battle">Start Battle</button>
+            <button style="text-align: center; width: 20%; margin: 0 auto; padding: 20px 0; background-color: pink; border: 1px solid pink;" data-page-id="start-battle" class="nav-item">Start Battle</button>
         </div>
 
         <div style="margin-left: 50px;">
@@ -166,6 +166,18 @@
             </div>
             </div>
             <div class="draft-heroes-list"></div>
+        </div>
+
+        <div id="start-battle" class="page" style="display:none; padding: 40px 0;">
+            <h1 style="text-align: center;">Battle</h1>
+            <div style="display: flex; justify-content: center; margin: 40px 0;">
+
+            <button id="fight-button" style="text-align: center; width: 20%; margin: 20px auto; padding: 10px 0; background-color: pink; border: 1px solid pink;">Fight</button>
+           </div>
+            <h2>Heroes</h2>
+            <div id="heroes" class="heroes" style="display:flex;gap: 20px;justify-content: space-between;padding: 0 10px;background-color: white;border: b;"></div>
+            <h2>Villains</h2>
+            <div id="opponent-cards"style="display:flex;gap: 20px;justify-content: space-between;padding: 0 10px;"></div>
         </div>
 
         <div id="hall-of-fame" class="page" style="display: none;">Content for Hall of Fame</div>
