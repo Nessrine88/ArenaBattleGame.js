@@ -2,6 +2,7 @@ import _heroData from "../data/heroes.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     render_heroData('#heroes-list', _heroData);
+    render_heroData('.draft-heroes-list', _heroData);
 });
 
 function render_heroData(selector, _heroData) {

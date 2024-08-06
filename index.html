@@ -21,7 +21,7 @@
     <script src="assets/js/config.js"></script>
     <script type="module" src="assets/js/data/heroes.js"></script>
     <script src="assets/js/lib.js"></script>        
-    <script src="assets/js/services/heroService.js"></script>
+    <script type="module" src="assets/js/services/heroService.js"></script>
     <script src="assets/js/services/hallOfFameService.js"></script>
     <script src="assets/js/services/draftService.js"></script>
     <script type="module" src="assets/js/pages/renderer.js"></script>
@@ -110,7 +110,25 @@
                 <!-- Heroes will be dynamically added here -->
             </div>
         </div>
-        <div id="draft" class="page" style="display: none;">Content for Arena</div>
+        <div id="draft" class="page" style="display: none;">
+            <h3 style="text-align: center; width: 50%; margin: 0 auto;">Open your booster pack and draft your heroes</h3>
+            <div style="display: flex; justify-content: center; margin-top: 40px;">
+                <input type="radio" id="alignment-good-battle" name="alignment-battle" value="good">
+                <label for="alignment-good-battle">Good</label>
+                <span id="good-count" style="padding-right: 20px;">(0)</span>
+                <input type="radio" id="alignment-bad-battle" name="alignment-battle" value="bad" checked>
+                <label for="alignment-bad-battle">Bad</label>
+                <span id="bad-count">(0)</span>
+            </div>
+    <div style="display: flex; justify-content: center; margin: 40px 0;">
+        <button data-page-id="start-draft" class="nav-item" style="text-align: center; width: 20%; margin: 0 auto; padding: 20px 0; background-color: rgba(57, 237, 120, 0.5); border: 1px solid blue;">Start Draft</button>
+    </div>
+         
+        </div>
+        <div id="start-draft" class="page" style="display: none;">
+            <div class="draft-heroes-list"></div>
+        </div>
+
         <div id="hall-of-fame" class="page" style="display: none;">Content for Hall of Fame</div>
     </main>
 </body>
