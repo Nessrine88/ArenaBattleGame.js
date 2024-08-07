@@ -3,7 +3,7 @@ let heroesArray = heroes();
 
 document.addEventListener('DOMContentLoaded', () => {
    
-    render_heroData('#heroes-list', heroes());
+    render_heroData('#heroes-list', heroesArray);
     render_heroData('.draft-heroes-list', heroesArray);
 });
 
