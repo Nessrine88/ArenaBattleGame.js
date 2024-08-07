@@ -6,10 +6,7 @@ function filterHeroes(e) {}
 */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Example heroes data
-  
-
-  const heroesToFilter = heroes();
+  let heroesToFilter = heroes(); // Use `let` to allow reassignment
 
   function initHeroesSection() {
     const input = document.getElementById('input');
@@ -17,7 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const raceDropdown = document.getElementById("race-dropdown");
     const attributeDropdown = document.getElementById("attribute-dropdown");
     const sortDropdown = document.getElementById("sort-dropdown");
-    return { input, filterButton, raceDropdown, attributeDropdown, sortDropdown };
+    const alignmentGood = document.getElementById("alignment-good");
+    const alignmentBad = document.getElementById("alignment-bad");
+    const alignmentNeutral = document.getElementById("alignment-neutral");
+    return { input, filterButton, raceDropdown, attributeDropdown, sortDropdown, alignmentGood, alignmentBad, alignmentNeutral };
   }
 
   function getAttributeValue(hero, attributePath) {
@@ -30,65 +30,58 @@ document.addEventListener('DOMContentLoaded', () => {
     return value;
   }
 
-
-
- 
   function filterHeroes(e) {
     e.preventDefault();
 
-    const { input, raceDropdown, attributeDropdown, sortDropdown } = initHeroesSection();
+    const { input, raceDropdown, attributeDropdown, sortDropdown, alignmentGood, alignmentBad, alignmentNeutral } = initHeroesSection();
     const filter = input.value.trim().toUpperCase();
     const attribute = attributeDropdown.value;
     const sortOrder = sortDropdown.value;
-    const cards = document.querySelectorAll('.hero-card');
+    const selectedAlignments = [];
 
-    // Filter the hero cards based on input
-    const filteredHeroes = heroesToFilter.filter(hero =>
+    // Collect selected alignments
+    if (alignmentGood.checked) selectedAlignments.push("good");
+    if (alignmentBad.checked) selectedAlignments.push("bad");
+    if (alignmentNeutral.checked) selectedAlignments.push("neutral");
+
+    // Filter heroes based on the input
+    let filteredHeroes = heroesToFilter.filter(hero =>
       hero.name.toUpperCase().includes(filter)
     );
 
-    // Sort the filtered heroes by the selected attribute
-    const sortedHeroes = heroesToFilter.slice().sort((a, b) => {
+    // Further filter by alignment if any alignment is selected
+    if (selectedAlignments.length > 0) {
+      filteredHeroes = filteredHeroes.filter(hero =>
+        selectedAlignments.includes(hero.biography.alignment)
+      );
+    }
+
+    // Sort filtered heroes by the selected attribute
+    const sortedHeroes = filteredHeroes.slice().sort((a, b) => {
       const valueA = getAttributeValue(a, attribute);
       const valueB = getAttributeValue(b, attribute);
 
-      // Custom sorting for 'cost' attribute
       if (attribute === 'cost') {
-        return sortOrder === "asc"
-          ? calculateCost(a) - calculateCost(b)
-          : calculateCost(b) - calculateCost(a);
+        return sortOrder === "asc" ? calculateCost(a) - calculateCost(b) : calculateCost(b) - calculateCost(a);
       }
-      // Custom sorting for 'priority' attribute
       if (attribute === 'priority') {
-        return sortOrder === "asc"
-          ? calculatePriority(a) - calculatePriority(b)
-          : calculatePriority(b) - calculatePriority(a);
+        return sortOrder === "asc" ? calculatePriority(a) - calculatePriority(b) : calculatePriority(b) - calculatePriority(a);
       }
 
-      // Handling string and number comparisons
       if (typeof valueA === 'string' && typeof valueB === 'string') {
-        return sortOrder === "asc"
-          ? valueA.localeCompare(valueB)
-          : valueB.localeCompare(valueA);
+        return sortOrder === "asc" ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
       } else if (typeof valueA === 'number' && typeof valueB === 'number') {
-        return sortOrder === "asc"
-          ? valueA - valueB
-          : valueB - valueA;
+        return sortOrder === "asc" ? valueA - valueB : valueB - valueA;
       }
     });
 
     // Render the sorted heroes
     render_heroData('#heroes-list', sortedHeroes);
-    console.log( render_heroData('#heroes-list', sortedHeroes))
-   
   }
 
   const { filterButton } = initHeroesSection();
-  
   filterButton.addEventListener('click', filterHeroes);
 
   // Initial render
   render_heroData('#heroes-list', heroesToFilter);
-
-
 });
