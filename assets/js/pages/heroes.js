@@ -6,7 +6,7 @@ function filterHeroes(e) {}
 */
 
 document.addEventListener('DOMContentLoaded', () => {
-  let heroesToFilter = heroes(); // Use `let` to allow reassignment
+  let heroesToFilter = heroes();
 
   function initHeroesSection() {
     const input = document.getElementById('input');
@@ -36,8 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const { input, raceDropdown, attributeDropdown, sortDropdown, alignmentGood, alignmentBad, alignmentNeutral } = initHeroesSection();
     const filter = input.value.trim().toUpperCase();
     const attribute = attributeDropdown.value;
+    const selectedRace = raceDropdown.value;
     const sortOrder = sortDropdown.value;
     const selectedAlignments = [];
+
 
     // Collect selected alignments
     if (alignmentGood.checked) selectedAlignments.push("good");
@@ -48,7 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let filteredHeroes = heroesToFilter.filter(hero =>
       hero.name.toUpperCase().includes(filter)
     );
-
+    
+    // Filter heroes by Race 
+    if (selectedRace && selectedRace !== "All") {
+      filteredHeroes = filteredHeroes.filter(
+        (hero) => hero.appearance.race === selectedRace
+      );
+    }
+  
     // Further filter by alignment if any alignment is selected
     if (selectedAlignments.length > 0) {
       filteredHeroes = filteredHeroes.filter(hero =>
