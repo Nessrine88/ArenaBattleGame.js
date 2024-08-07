@@ -4,6 +4,7 @@ function getHeroes(heroes){
 return heroes
 }
 
+
 function getGoodHeroes(heroes){
   return heroes.filter(hero => hero.biography.alignment === "good");
 }
@@ -38,13 +39,14 @@ function calculatePriority(hero) {
       return  Math.ceil(calculateDefense(hero) + calculateAttack(hero) + calculatePriority(hero))
   }
 
+
 function getfilteredHeroes() {
   
 }
  
-function getRaces(){
+function getRaces(heroes){
   let races = heroes.map(hero => hero.appearance.race);
-  return [...new Set(races)];
+  return races;
 }
 
 function getRandomHeroes(heroes, amount) {
@@ -52,11 +54,13 @@ function getRandomHeroes(heroes, amount) {
   return shuffled.slice(0, amount);
 }
 
-function lookupHeroes(ids) {
+function lookupHeroes(ids, heroes) {
   return ids.map(id => heroes.find(hero => hero.id === id));
 }
 
-function lookupHero(id){
+
+
+function lookupHero(id,heroes){
   return heroes.find(hero => hero.id === id); 
 }
 

@@ -26,7 +26,7 @@
     <script src="assets/js/services/draftService.js"></script>
     <script src="assets/js/pages/renderer.js"></script>
     <script src="assets/js/pages/pages.js"></script>
-    <script src="assets/js/pages/heroes.js"></script>
+    <script src="assets/js/pages/heroes.js" defer></script>
     <script src="assets/js/pages/draft.js"></script>
     <script src="assets/js/pages/battle.js"></script>
     <script src="assets/js/pages/hallOfFame.js"></script>    
@@ -48,7 +48,7 @@
                 <div style="display: flex; flex-direction: column; align-items: center; width: 90vw; margin: auto;">
                     <div style="padding: 40px 0 20px 0; display: inline-block; background-color: white; width: 90vw; margin: auto; text-align: center;">
                         <label for="hero-filter" style="margin-right: 10px;">Name</label>
-                        <input type="text" id="hero-filter" placeholder="Filter heroes by name...">
+                        <input type="text" id="input" placeholder="Filter heroes by name...">
             
                         <!-- Implement Hero Filter by their race and alignment -->
                         <label for="race-dropdown" style="margin-right: 5px; margin-left: 5px;">Race</label>
@@ -165,7 +165,7 @@
     
             </div>
             </div>
-            <div class="draft-heroes-list"></div>
+            <div id="draft-heroes-list" class="draft-heroes-list"></div>
         </div>
 
         <div id="start-battle" class="page" style="display:none; padding: 40px 0;">

@@ -69,7 +69,7 @@ function renderHeroItem(hero) {
             <div class="final-stats">
                 <div class="priority">${calculatePriority(hero)}</div>
                 <div>
-                    <img src="https://www.freeiconspng.com/thumbs/check-mark-png/checkmark-png-line-29.png" />
+                   <img src="media/check.svg"/>
                 </div>
                 <div>${calculateAttack(hero)} / ${calculateDefense(hero)}</div>
             </div>
@@ -78,3 +78,4 @@ function renderHeroItem(hero) {
 }
 
 getRandomHeroes(heroesArray);
+

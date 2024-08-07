@@ -17774,4 +17774,6 @@ const _heroData = [
     }
 ]
 
-export default _heroData;
+function heroes(){
+    return _heroData
+}
