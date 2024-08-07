@@ -27,7 +27,13 @@
 /* your funtions */
 
 // Function to initialize the draft section
+
 function initDraftSection() {
+    let draftHeroesCard = heroes()
+    const goodHeroes = document.getElementById('good-count');
+    goodHeroes.innerText = `(${getGoodHeroes(draftHeroesCard).length})`;
+    const badHeroes = document.getElementById('bad-count');
+    badHeroes.innerText = `(${getBadHeroes(draftHeroesCard).length})`
     const draftHeroes = document.querySelectorAll('.draft-card');
 
     draftHeroes.forEach(hero => {
