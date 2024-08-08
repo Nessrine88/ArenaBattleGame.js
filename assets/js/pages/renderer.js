@@ -71,7 +71,14 @@ function renderHeroItem(hero) {
                 <div class = "checkIcon">
                   
                 </div>
-                <div>${calculateAttack(hero)} / ${calculateDefense(hero)}</div>
+                <div>
+                <div class ="attackValue" >
+                ${calculateAttack(hero)} 
+                </div>
+                / 
+                <div class ="defenseValue">
+                ${calculateDefense(hero)}</div>
+                </div>
             </div>
         </div>
     `;
