@@ -4,17 +4,10 @@
 
 
 function setArenaVillains() {
-    // Fetch the list of all heroes (or villains, depending on your context)
     const heroesArray = heroes();
-
-    // Get a random subset of heroes
     const battleCards = getRandomHeroes(heroesArray);
-
-    // Select the first 5 villains
     const villains = battleCards.slice(0, 5);
-
-    // Render the villains in the container
-    render_heroData('#villains', villains); // Adjust the selector and use `#villains` instead of `#villainsContainer`
+    render_heroData('#villains', villains);
 }
 
 
@@ -37,6 +30,6 @@ function getDraftedHeroesStats() {
 }
 
 document.addEventListener('DOMContentLoaded',()=> {
-// Call the function to set arena villains
+
 setArenaVillains();
 })

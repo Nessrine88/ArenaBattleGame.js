@@ -39,20 +39,7 @@ function initDraftSection() {
         heroElements.forEach(hero => {
             hero.addEventListener('click', () => {
                 toggleDraftedHero(hero);
-                if (hero.classList.contains('selected')) {
-                    if (!superHeroes.includes(hero)) {
-                        superHeroes.push(hero);
-                        hero.classList.add('battle-card');
-                        // Append to heroes div if not already there
-                        selection();
-                    }
-                } else {
-                    // Remove from superHeroes array if deselected
-                    superHeroes = superHeroes.filter(selectedHero => selectedHero !== hero);
-                    hero.classList.remove('battle-card');
-                    // Update selection display
-                    selection();
-                }
+                updateSelectedHeroes(hero);
             });
         });
     }
@@ -69,19 +56,39 @@ function toggleDraftedHero(hero) {
     hero.classList.toggle('selected');
 }
 
-function selection() {
-    const heroesDiv = document.getElementById('heroes');
-    // Clear previously appended heroes
-    heroesDiv.innerHTML = '';
-    superHeroes.forEach(hero => {
-        if (!heroesDiv.contains(hero)) {
-            heroesDiv.appendChild(hero.cloneNode(true));
-        }
+// Function to remove the 'selected' class from all draft cards
+function removeSelectedClass() {
+    const selectedCards = document.querySelectorAll('.draft-card.selected');
+    console.log(selectedCards);
+    
+    selectedCards.forEach(card => {
+        card.classList.remove('selected');
     });
 }
 
-// Placeholder for starting the draft process
-function startDraft(e) {}
+// Function to update the superHeroes array and reflect changes in the DOM
+function updateSelectedHeroes(hero) {
+    if (hero.classList.contains('selected')) {
+        if (!superHeroes.includes(hero)) {
+            superHeroes.push(hero);
+            hero.classList.add('battle-card');
+        }
+    } else {
+        superHeroes = superHeroes.filter(selectedHero => selectedHero !== hero);
+        hero.classList.remove('battle-card');
+    }
+    selection();
+    removeSelectedClass();
+}
+
+// Function to update the selection display
+function selection() {
+    const heroesDiv = document.getElementById('heroes');
+    heroesDiv.innerHTML = '';
+    superHeroes.forEach(hero => {
+        heroesDiv.appendChild(hero.cloneNode(true));
+    });
+}
 
 // Event listener for when DOM content is loaded
 document.addEventListener('DOMContentLoaded', () => {
