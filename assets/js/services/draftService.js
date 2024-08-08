@@ -43,6 +43,13 @@ function getDraftedHeroesStats() {
     const maxCost = getConfigTotalCost();
     const maxPriority = getConfigTotalPriority();
 
+    // Check constraints
+    if (numSelectedCards > maxAmount || totalCostValue > maxCost || totalPriorityValue > maxPriority) {
+        alert(`You can choose only ${maxAmount} cards, and the total cost must not exceed ${maxCost} and total priority must not exceed ${maxPriority}.`);
+        return; // Exit the function to prevent further updates
+    }
+
+    // Update progress bars and count elements only if constraints are not exceeded
     progressBar.style.width = (numSelectedCards / maxAmount * 100) + '%';
     costProgress.style.width = (totalCostValue / maxCost * 100) + '%';
     priorityProgress.style.width = (totalPriorityValue / maxPriority * 100) + '%';
@@ -51,12 +58,8 @@ function getDraftedHeroesStats() {
     costProgressCount.innerText = `${totalCostValue}/${maxCost}`;
     priorityProgressCount.innerText = `${totalPriorityValue}/${maxPriority}`;
     selectedCardsCount.innerText = `${numSelectedCards}/${maxAmount}`;
-
-    // Check constraints and show alert if necessary
-    if (numSelectedCards > maxAmount || totalCostValue > maxCost || totalPriorityValue > maxPriority) {
-        alert(`You can choose only ${maxAmount} cards, and the total cost must not exceed ${maxCost} and total priority must not exceed ${maxPriority}.`);
-    }
 }
+
 
 
 document.addEventListener('DOMContentLoaded',()=> {
