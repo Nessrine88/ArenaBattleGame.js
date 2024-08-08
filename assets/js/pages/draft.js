@@ -68,6 +68,8 @@ function updateSelectedHeroes(hero) {
         hero.classList.remove('battle-card');
     }
     selection();
+getDraftedHeroesStats();
+
 }
 
 // Function to update the selection display
@@ -77,7 +79,7 @@ function selection() {
 
     superHeroes.forEach(hero => {
         const clone = hero.cloneNode(true);
-        clone.classList.remove('selected'); // Ensure the `selected` class is not applied to cloned nodes
+        clone.classList.remove('selected');
         heroesDiv.appendChild(clone);
     });
 }
