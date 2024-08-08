@@ -1,35 +1,9 @@
-// function initDraftSection() {
-
-// }
-
-
-// function draftHero(e) {
-    
-// }
-
-// function toggleDraftedHero($target){
-    
-// }
-
-// function addDraftedHeroToTeam($article, id) {
-    
-// }
-
-// function removeDraftedHeroFromTeam($article, id) {
-    
-// }
-
-// function startDraft(e) {
-    
-// }
-
-
-/* your funtions */
+let superHeroes = [];
 
 function initDraftSection() {
     // Fetch the list of heroes
     let draftHeroesCard = heroes();
-    
+
     // Update good and bad heroes count
     function updateHeroCounts() {
         const goodHeroes = document.getElementById('good-count');
@@ -39,12 +13,12 @@ function initDraftSection() {
         badHeroes.innerText = `(${getBadHeroes(draftHeroesCard).length})`;
     }
     
-    updateHeroCounts(); // Update counts initially
+    updateHeroCounts();
 
     // Get alignment radio buttons
     const goodHeroesRadio = document.getElementById('alignment-good-battle');
     const badHeroesRadio = document.getElementById('alignment-bad-battle');
-    
+
     // Handle radio change to update hero list based on alignment
     function handleRadioChange() {
         let draftHeroes;
@@ -57,18 +31,30 @@ function initDraftSection() {
 
         // Render the hero list
         render_heroData('.draft-heroes-list', draftHeroes);
-        
+
         // Re-query the DOM for newly rendered hero elements
         const heroElements = document.querySelectorAll('.draft-heroes-list .draft-card');
-        
+
         // Attach click event listeners to newly rendered hero elements
         heroElements.forEach(hero => {
             hero.addEventListener('click', () => {
                 toggleDraftedHero(hero);
+                if (hero.classList.contains('selected')) {
+                    if (!superHeroes.includes(hero)) {
+                        superHeroes.push(hero);
+                        hero.classList.add('battle-card');
+                        // Append to heroes div if not already there
+                        selection();
+                    }
+                } else {
+                    // Remove from superHeroes array if deselected
+                    superHeroes = superHeroes.filter(selectedHero => selectedHero !== hero);
+                    hero.classList.remove('battle-card');
+                    // Update selection display
+                    selection();
+                }
             });
         });
-        
-        console.log(draftHeroes);  
     }
 
     goodHeroesRadio.addEventListener('change', handleRadioChange);
@@ -83,25 +69,15 @@ function toggleDraftedHero(hero) {
     hero.classList.toggle('selected');
 }
 
-// Function to add a drafted hero to the team
-function addDraftedHeroToTeam($article, id) {
-    const draftHero = document.querySelector(`#hero-${id}`);
-    const clonedHero = draftHero.cloneNode(true);
-    clonedHero.classList.remove('draft-card');
-    clonedHero.classList.add('heroes');
-    $article.appendChild(clonedHero);
-    draftHero.parentNode.removeChild(draftHero);
-}
-
-// Function to remove a drafted hero from the team and possibly add back to draft section
-function removeDraftedHeroFromTeam($article, id) {
-    const battleHero = document.querySelector(`#hero-${id}`);
-    const draftSection = document.querySelector('.draft-section');
-    const clonedHero = battleHero.cloneNode(true);
-    clonedHero.classList.remove('battle-card');
-    clonedHero.classList.add('draft-card');
-    draftSection.appendChild(clonedHero);
-    battleHero.parentNode.removeChild(battleHero);
+function selection() {
+    const heroesDiv = document.getElementById('heroes');
+    // Clear previously appended heroes
+    heroesDiv.innerHTML = '';
+    superHeroes.forEach(hero => {
+        if (!heroesDiv.contains(hero)) {
+            heroesDiv.appendChild(hero.cloneNode(true));
+        }
+    });
 }
 
 // Placeholder for starting the draft process
@@ -111,4 +87,3 @@ function startDraft(e) {}
 document.addEventListener('DOMContentLoaded', () => {
     initDraftSection();
 });
-
