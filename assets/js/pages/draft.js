@@ -87,8 +87,8 @@ function toggleDraftedHero(hero) {
 function addDraftedHeroToTeam($article, id) {
     const draftHero = document.querySelector(`#hero-${id}`);
     const clonedHero = draftHero.cloneNode(true);
-    clonedHero.classList.remove('draft-card'); // Remove draft-specific styling
-    clonedHero.classList.add('heroes'); // Add battle-specific styling
+    clonedHero.classList.remove('draft-card');
+    clonedHero.classList.add('heroes');
     $article.appendChild(clonedHero);
     draftHero.parentNode.removeChild(draftHero);
 }
@@ -98,8 +98,8 @@ function removeDraftedHeroFromTeam($article, id) {
     const battleHero = document.querySelector(`#hero-${id}`);
     const draftSection = document.querySelector('.draft-section');
     const clonedHero = battleHero.cloneNode(true);
-    clonedHero.classList.remove('battle-card'); // Remove battle-specific styling
-    clonedHero.classList.add('draft-card'); // Add draft-specific styling
+    clonedHero.classList.remove('battle-card');
+    clonedHero.classList.add('draft-card');
     draftSection.appendChild(clonedHero);
     battleHero.parentNode.removeChild(battleHero);
 }

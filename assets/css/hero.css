@@ -145,8 +145,12 @@ body {
     font-size: 12px; 
   }
   
-  .final-stats img {
-    width: 20px;
+  .checkIcon {
+    background-image: url('../media/check.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 50px;
     height: auto;
     display: none;
   }
@@ -157,7 +161,7 @@ body {
     background-color: rgba(7, 238, 18, 0.1);
 }
 
-.draft-card.selected .final-stats img {
+.draft-card.selected .checkIcon {
   display: block;
 }
 

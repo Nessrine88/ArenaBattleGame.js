@@ -68,8 +68,8 @@ function renderHeroItem(hero) {
             </div>
             <div class="final-stats">
                 <div class="priority">${calculatePriority(hero)}</div>
-                <div>
-                   <img src="media/check.svg"/>
+                <div class = "checkIcon">
+                  
                 </div>
                 <div>${calculateAttack(hero)} / ${calculateDefense(hero)}</div>
             </div>
