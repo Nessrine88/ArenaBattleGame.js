@@ -69,6 +69,7 @@ function updateSelectedHeroes(hero) {
     }
     selection();
 getDraftedHeroesStats();
+gatherSuperHeroesToBattle()
 
 }
 

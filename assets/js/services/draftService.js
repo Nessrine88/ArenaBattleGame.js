@@ -8,6 +8,7 @@ function setArenaVillains() {
     const battleCards = getRandomHeroes(heroesArray);
     const villains = battleCards.slice(0, 5);
     render_heroData('#villains', villains);
+    return villains
 }
 function getDraftedHeroesStats() {
     // Get DOM elements
@@ -19,7 +20,7 @@ function getDraftedHeroesStats() {
     const priorityProgressCount = document.getElementById('priority-progress-count');
     const selectedCardsCount = document.getElementById('total-amount');
 
-    console.log(superHeroes);
+
 
     let totalCostValue = 0;
     let totalPriorityValue = 0;
@@ -48,6 +49,7 @@ function getDraftedHeroesStats() {
         alert(`You can choose only ${maxAmount} cards, and the total cost must not exceed ${maxCost} and total priority must not exceed ${maxPriority}.`);
         return; // Exit the function to prevent further updates
     }
+
 
     // Update progress bars and count elements only if constraints are not exceeded
     progressBar.style.width = (numSelectedCards / maxAmount * 100) + '%';
