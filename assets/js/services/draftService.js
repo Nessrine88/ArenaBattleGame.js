@@ -29,7 +29,7 @@ function getDraftedHeroesStats() {
     selectedCardsCount.innerText = `${selectedCards.length}/${_configSettings.amount}`;
 }
 
-document.addEventListener('DOMContentLoaded',()=> {
 
+document.addEventListener('DOMContentLoaded',()=> {
 setArenaVillains();
 })

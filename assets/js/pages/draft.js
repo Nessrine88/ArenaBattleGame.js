@@ -56,16 +56,6 @@ function toggleDraftedHero(hero) {
     hero.classList.toggle('selected');
 }
 
-// Function to remove the 'selected' class from all draft cards
-function removeSelectedClass() {
-    const selectedCards = document.querySelectorAll('.draft-card.selected');
-    console.log(selectedCards);
-    
-    selectedCards.forEach(card => {
-        card.classList.remove('selected');
-    });
-}
-
 // Function to update the superHeroes array and reflect changes in the DOM
 function updateSelectedHeroes(hero) {
     if (hero.classList.contains('selected')) {
@@ -78,15 +68,17 @@ function updateSelectedHeroes(hero) {
         hero.classList.remove('battle-card');
     }
     selection();
-    removeSelectedClass();
 }
 
 // Function to update the selection display
 function selection() {
     const heroesDiv = document.getElementById('heroes');
     heroesDiv.innerHTML = '';
+
     superHeroes.forEach(hero => {
-        heroesDiv.appendChild(hero.cloneNode(true));
+        const clone = hero.cloneNode(true);
+        clone.classList.remove('selected'); // Ensure the `selected` class is not applied to cloned nodes
+        heroesDiv.appendChild(clone);
     });
 }
 
