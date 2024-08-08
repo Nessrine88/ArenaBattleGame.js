@@ -9,7 +9,6 @@ function setArenaVillains() {
     const villains = battleCards.slice(0, 5);
     render_heroData('#villains', villains);
 }
-
 function getDraftedHeroesStats() {
     // Get DOM elements
     const progressBar = document.getElementById('progress-bar');
@@ -39,14 +38,24 @@ function getDraftedHeroesStats() {
     });
 
     // Compute progress percentages
-    progressBar.style.width = (superHeroes.length / getConfigAmount() * 100) + '%';
-    costProgress.style.width = (totalCostValue / getConfigTotalCost() * 100) + '%';
-    priorityProgress.style.width = (totalPriorityValue / getConfigTotalPriority() * 100) + '%';
+    const numSelectedCards = superHeroes.length;
+    const maxAmount = getConfigAmount();
+    const maxCost = getConfigTotalCost();
+    const maxPriority = getConfigTotalPriority();
+
+    progressBar.style.width = (numSelectedCards / maxAmount * 100) + '%';
+    costProgress.style.width = (totalCostValue / maxCost * 100) + '%';
+    priorityProgress.style.width = (totalPriorityValue / maxPriority * 100) + '%';
 
     // Update progress count elements
-    costProgressCount.innerText = `${totalCostValue}/${getConfigTotalCost()}`;
-    priorityProgressCount.innerText = `${totalPriorityValue}/${getConfigTotalPriority()}`;
-    selectedCardsCount.innerText = `${superHeroes.length}/${getConfigAmount()}`;
+    costProgressCount.innerText = `${totalCostValue}/${maxCost}`;
+    priorityProgressCount.innerText = `${totalPriorityValue}/${maxPriority}`;
+    selectedCardsCount.innerText = `${numSelectedCards}/${maxAmount}`;
+
+    // Check constraints and show alert if necessary
+    if (numSelectedCards > maxAmount || totalCostValue > maxCost || totalPriorityValue > maxPriority) {
+        alert(`You can choose only ${maxAmount} cards, and the total cost must not exceed ${maxCost} and total priority must not exceed ${maxPriority}.`);
+    }
 }
 
 
