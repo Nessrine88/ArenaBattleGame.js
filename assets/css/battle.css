@@ -1,0 +1,9 @@
+.defeated {
+    filter: grayscale(100%);
+    color: lightgray;
+  }
+  
+  .defeated  .hero-cost {
+    background-color: lightgray;
+  }
+  

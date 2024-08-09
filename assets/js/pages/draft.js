@@ -28,7 +28,7 @@ function initDraftSection() {
         } else if (badHeroesRadio.checked) {
             draftHeroes = getBadHeroes(draftHeroesCard);
         }
-
+        
         // Render the hero list
         render_heroData('.draft-heroes-list', draftHeroes);
 
@@ -71,6 +71,7 @@ function updateSelectedHeroes(hero) {
 
 gatherSuperHeroesToBattle()
 getDraftedHeroesStats();
+
 }
 
 // Function to update the selection display
@@ -83,9 +84,12 @@ function selection() {
         clone.classList.remove('selected');
         heroesDiv.appendChild(clone);
     });
+    
 }
+
 
 // Event listener for when DOM content is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initDraftSection();
+
 });
