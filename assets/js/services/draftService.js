@@ -17,7 +17,7 @@ function setArenaVillains() {
         }
         return b.cost - a.cost;
     });
-    render_heroData('#villains', villains);
+    render_heroData('#villains', villains, 'villain');
     
     return villains;
 }

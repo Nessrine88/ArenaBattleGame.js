@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Render the sorted heroes
-    render_heroData('#heroes-list', sortedHeroes);
+    render_heroData('#heroes-list', sortedHeroes, 'selected');
   }
 
   const { filterButton } = initHeroesSection();

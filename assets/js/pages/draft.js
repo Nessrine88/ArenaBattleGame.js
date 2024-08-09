@@ -30,14 +30,16 @@ function initDraftSection() {
         }
         
         // Render the hero list
-        render_heroData('.draft-heroes-list', draftHeroes);
+        render_heroData('.draft-heroes-list', draftHeroes, 'draft');
 
         // Re-query the DOM for newly rendered hero elements
-        const heroElements = document.querySelectorAll('.draft-heroes-list .draft-card');
+        const heroElements = document.querySelectorAll('.draft');
 
         // Attach click event listeners to newly rendered hero elements
         heroElements.forEach(hero => {
             hero.addEventListener('click', () => {
+                console.log('click');
+                
                 toggleDraftedHero(hero);
                 updateSelectedHeroes(hero);
             });
