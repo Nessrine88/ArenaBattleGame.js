@@ -4,12 +4,26 @@
 
 
 function setArenaVillains() {
-    const heroesArray = heroes();
-    const battleCards = getRandomHeroes(heroesArray);
-    const villains = battleCards.slice(0, 5);
+    const battleCards = heroes();
+    const villains = battleCards.slice(0, 5)
+    villains.forEach(villain => {
+        villain.cost = calculateCost(villain);
+        villain.priority = calculatePriority(villain);
+    });
+
+    villains.sort((a, b) => {
+        if (b.priority !== a.priority) {
+            return b.priority - a.priority;
+        }
+        return b.cost - a.cost;
+    });
     render_heroData('#villains', villains);
-    return villains
+    
+    return villains;
 }
+
+
+
 function getDraftedHeroesStats() {
     // Get DOM elements
     const progressBar = document.getElementById('progress-bar');
@@ -47,7 +61,7 @@ function getDraftedHeroesStats() {
     // Check constraints
     if (numSelectedCards > maxAmount || totalCostValue > maxCost || totalPriorityValue > maxPriority) {
         alert(`You can choose only ${maxAmount} cards, and the total cost must not exceed ${maxCost} and total priority must not exceed ${maxPriority}.`);
-        return; // Exit the function to prevent further updates
+        return; 
     }
 
 

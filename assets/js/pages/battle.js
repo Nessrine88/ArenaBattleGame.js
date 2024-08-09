@@ -56,13 +56,32 @@ function startBattle() {
 
 // Gather selected superheroes for battle
 function gatherSuperHeroesToBattle() {
-   return heroes
+    console.log(superHeroes);
+    superHeroes.forEach(hero => {
+        const heroAttackElement = hero.querySelector('.attackValue');
+        const heroDefenseElement = hero.querySelector('.defenseValue');
+        const heroAttack = parseFloat(heroAttackElement.innerText);
+        const heroDefense = parseFloat(heroDefenseElement.innerText)
+        console.log(heroAttack);
+        console.log(heroDefense);
+        
+    });
+     
+   return superHeroes
 }
 
 // Gather villains for battle (assumed to be setArenaVillains function)
 function gatherVillainsToBattle() {
     const villains = setArenaVillains();
-    return villains;
+   console.log(villains);
+   
+    villains.forEach(villain => {
+            const villainAttack = calculateAttack(villain)
+                const villainDefense =calculateDefense(villain)
+      console.log(villainAttack);
+    console.log(villainDefense);
+    });
+
 }
 
 // Handle arena fights
@@ -93,45 +112,33 @@ function arenaFight(round) {
     calculateWinners();
 }
 
-// Simulate a fight between a hero and a villain
-function fight(hero, villain) {
-    const heroAttackElement = hero.querySelector('.attackValue');
-    const heroDefenseElement = hero.querySelector('.defenseValue');
-    const villainAttackElement = villain.querySelector('.attackValue');
-    const villainDefenseElement = villain.querySelector('.defenseValue');
 
-    // Convert values to numbers (assuming they are stored as text in DOM)
-    const heroAttack = parseFloat(heroAttackElement.innerText);
-    const heroDefense = parseFloat(heroDefenseElement.innerText);
-    const villainAttack = parseFloat(villainAttackElement.innerText);
-    const villainDefense = parseFloat(villainDefenseElement.innerText);
+
 
     // Compare attack and defense values to determine the winner
-    let winner = null;
+    // let winner = null;
 
-    // Hero wins if their attack is greater than villain's defense
-    if (heroAttack > villainDefense) {
-        winner = hero;
-    } 
+    // // Hero wins if their attack is greater than villain's defense
+    // if (heroAttack > villainDefense) {
+    //     winner = hero;
+    // } 
 
-    else if (villainAttack > heroDefense) {
-        winner = villain;
-    } 
+    // else if (villainAttack > heroDefense) {
+    //     winner = villain;
+    // } 
 
-    else {
-        winner = null; 
-    }
+    // else {
+    //     winner = null; 
+    // }
 
-    // Log the result of the fight
-    if (winner) {
-        console.log(`${winner.id} wins the fight against ${hero.id}`);
-    } else {
-        console.log(`It's a draw between ${hero.id} and ${villain.id}`);
-    }
+    // // Log the result of the fight
+    // if (winner) {
+    //     console.log(`${winner.id} wins the fight against ${hero.id}`);
+    // } else {
+    //     console.log(`It's a draw between ${hero.id} and ${villain.id}`);
+    // }
 
-    // Return the winner (or null if there's no clear winner)
-    return winner;
-}
+
 
 // Calculate and display winners of the battle
 function calculateWinners() {
@@ -152,4 +159,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize battle section and set up event handling
     initBattleSection();
     arenaFights();
+ 
 });

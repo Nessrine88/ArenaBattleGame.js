@@ -68,9 +68,9 @@ function updateSelectedHeroes(hero) {
         hero.classList.remove('battle-card');
     }
     selection();
-getDraftedHeroesStats();
-gatherSuperHeroesToBattle()
 
+gatherSuperHeroesToBattle()
+getDraftedHeroesStats();
 }
 
 // Function to update the selection display

@@ -71,13 +71,15 @@ function renderHeroItem(hero) {
                 <div class = "checkIcon">
                   
                 </div>
-                <div>
-                <div class ="attackValue" >
+                <div style = "display:flex" >
+              
+                <div class = "attackValue">
                 ${calculateAttack(hero)} 
                 </div>
                 / 
                 <div class ="defenseValue">
                 ${calculateDefense(hero)}</div>
+               
                 </div>
             </div>
         </div>
