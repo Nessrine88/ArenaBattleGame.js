@@ -124,17 +124,9 @@ function arenaFight() {
         }
     });
 
-    // Store winners in localStorage
+    // Store winners and losers in localStorage
     localStorage.setItem('winners', JSON.stringify(winners));
-}
 
-// Retrieve winners from localStorage (if needed)
-function retrieveWinners() {
-    const winnersJSON = localStorage.getItem('winners');
-    if (winnersJSON) {
-        return JSON.parse(winnersJSON);
-    }
-    return [];
 }
 
 
@@ -152,7 +144,6 @@ function retrieveWinners() {
 
 function lookupHero(name, heroes) {
     const foundHero = heroes.find(hero => hero.name === name);
-    console.log(`Looking up hero ${name}:`, foundHero);
     return foundHero;
 }
 
