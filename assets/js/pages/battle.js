@@ -113,8 +113,40 @@ function arenaFight() {
 
     console.log('Winners:', winners);
     console.log('Losers:', losers);
-   
+
+    // Add 'defeated' class to losers
+    document.querySelectorAll('.fighter').forEach(fighter => {
+        const fighterName = fighter.dataset.name; // Assuming you use data-name to store the fighter's name
+        const isLoser = losers.some(loser => loser.name === fighterName);
+        
+        if (isLoser) {
+            fighter.classList.add('defeated');
+        }
+    });
+
+    // Store winners in localStorage
+    localStorage.setItem('winners', JSON.stringify(winners));
 }
+
+// Retrieve winners from localStorage (if needed)
+function retrieveWinners() {
+    const winnersJSON = localStorage.getItem('winners');
+    if (winnersJSON) {
+        return JSON.parse(winnersJSON);
+    }
+    return [];
+}
+
+
+// Retrieve winners from localStorage (if needed)
+function retrieveWinners() {
+    const winnersJSON = localStorage.getItem('winners');
+    if (winnersJSON) {
+        return JSON.parse(winnersJSON);
+    }
+    return [];
+}
+
 
 
 
