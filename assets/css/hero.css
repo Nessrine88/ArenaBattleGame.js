@@ -100,7 +100,7 @@ body {
     padding-bottom: 5px;
     border-bottom: 1px solid #ddd;
     text-transform: capitalize;
-    height: 15px;
+    height: fit-content;
     font-size: 14px;
   }
   
