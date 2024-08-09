@@ -1,8 +1,5 @@
-// Arrays to store attack and defense values
-let attackHeroesArray = [];
-let defenseHeroesArray = [];
-let attackVillainsArray = [];
-let defenseVillainsArray = [];
+
+let villainsArray = [];
 
 // Initialize battle section
 function initBattleSection() {
@@ -17,47 +14,59 @@ function startBattle() {
 
 // Gather selected superheroes for battle
 function gatherSuperHeroesToBattle() {
-    attackHeroesArray = [];
-    defenseHeroesArray = [];
+    heroesArray = [];
     
-    superHeroes.forEach(hero => {
+    superHeroes.forEach((hero, index) => {
         const heroAttackElement = hero.querySelector('.attackValue');
         const heroDefenseElement = hero.querySelector('.defenseValue');
+        const heroName = hero.querySelector('.hero-name').innerText; // Assuming there's an element with class 'name'
+
         const heroAttack = parseFloat(heroAttackElement.innerText);
         const heroDefense = parseFloat(heroDefenseElement.innerText);
 
-        // Push values into arrays
-        attackHeroesArray.push(heroAttack);
-        defenseHeroesArray.push(heroDefense);
+        heroesArray.push({
+            name: heroName,
+            id: index,
+            attack: heroAttack,
+            defense: heroDefense
+        });
     });
 
     return superHeroes;
 }
 
+
 // Gather villains for battle
 function gatherVillainsToBattle() {
-    attackVillainsArray = [];
-    defenseVillainsArray = [];
+    villainsArray = [];
     
     const villains = setArenaVillains();
    
-    villains.forEach(villain => {
+    villains.forEach((villain, index) => {
         const villainAttack = calculateAttack(villain);
         const villainDefense = calculateDefense(villain);
+        const villainName = villain.name; // Assuming there's a name property
 
-        attackVillainsArray.push(villainAttack);
-        defenseVillainsArray.push(villainDefense);
+        villainsArray.push({
+            name: villainName,
+            id: index,
+            attack: villainAttack,
+            defense: villainDefense
+        });
     });
 
     return villains;
 }
 
+// Retrieve fighter by attack and defense values
+function getFighterByAttackDefense(array, attack, defense) {
+    return array.find(fighter => fighter.attack === attack && fighter.defense === defense);
+}
+
 // Handle arena fights
 function arenaFights() {
     const fightButton = document.getElementById('fight-button');
-    fightButton.addEventListener('click', () => {
-        arenaFight(); // Start the fight when button is clicked
-    });
+    fightButton.addEventListener('click', arenaFight);
 }
 
 // Conduct a single round of arena fight
@@ -68,32 +77,33 @@ function arenaFight() {
     let heroWins = 0;
     let villainWins = 0;
 
-    // Check if both teams have the same number of participants
-    if (attackHeroesArray.length !== attackVillainsArray.length) {
-        alert('The number of heroes and villains must be the same for fair battle!');
+    if (heroesArray.length !== villainsArray.length) {
+        alert('The number of heroes and villains must be the same for a fair battle!');
         return;
     }
 
-    // Compare each hero with each villain
-    for (let i = 0; i < attackHeroesArray.length; i++) {
-        const heroAttack = attackHeroesArray[i];
-        const heroDefense = defenseHeroesArray[i];
+    for (let i = 0; i < heroesArray.length; i++) {
+        const hero = heroesArray[i];
+        const heroAttack = hero.attack;
+        const heroDefense = hero.defense;
 
-        for (let j = 0; j < attackVillainsArray.length; j++) {
-            const villainAttack = attackVillainsArray[j];
-            const villainDefense = defenseVillainsArray[j];
+        for (let j = 0; j < villainsArray.length; j++) {
+            const villain = villainsArray[j];
+            const villainAttack = villain.attack;
+            const villainDefense = villain.defense;
 
             if (heroAttack > villainDefense) {
                 heroWins++;
-                console.log(`Hero ${i + 1} defeats Villain ${j + 1}`);
+                console.log(`Hero ${hero.name} defeats Villain ${villain.name}`);
+                addDefeatedClass('villain', villain.id);
             } else if (villainAttack > heroDefense) {
                 villainWins++;
-                console.log(`Villain ${j + 1} defeats Hero ${i + 1}`);
+                console.log(`Villain ${villain.name} defeats Hero ${hero.name}`);
+                addDefeatedClass('hero', hero.id);
             }
         }
     }
 
-    // Determine and display the battle result
     if (heroWins > villainWins) {
         alert('Heroes win!');
     } else if (villainWins > heroWins) {
@@ -102,6 +112,36 @@ function arenaFight() {
         alert('It\'s a draw! Both teams defeated each other equally.');
     }
 }
+
+
+// Function to add "defeated" class to a hero or villain
+function addDefeatedClass(type, id) {
+    let element;
+    if (type === 'hero') {
+        element = superHeroes[id];
+    } else if (type === 'villain') {
+        element = document.querySelector(`.villain[data-id="${id}"]`);
+    }
+    
+    if (element) {
+        element.classList.add('defeated');
+    }
+}
+
+// Function to add "defeated" class to a hero or villain
+function addDefeatedClass(type, id) {
+    let element;
+    if (type === 'hero') {
+        element = superHeroes[id];
+    } else if (type === 'villain') {
+        element = document.querySelector(`.villain[data-id="${id}"]`);
+    }
+    
+    if (element) {
+        element.classList.add('defeated');
+    }
+}
+
 
 // Event listener for DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
