@@ -69,7 +69,6 @@ function arenaFights() {
     fightButton.addEventListener('click', arenaFight);
 }
 
-// Conduct a single round of arena fight
 function arenaFight() {  
     gatherSuperHeroesToBattle();
     gatherVillainsToBattle();
@@ -94,11 +93,11 @@ function arenaFight() {
 
             if (heroAttack > villainDefense) {
                 heroWins++;
-                console.log(`Hero ${hero.name} defeats Villain ${villain.name}`);
+                const heroDetails = lookupHero(hero.name, heroes()); // Corrected
                 addDefeatedClass('villain', villain.id);
             } else if (villainAttack > heroDefense) {
                 villainWins++;
-                console.log(`Villain ${villain.name} defeats Hero ${hero.name}`);
+                const villainDetails = lookupHero(villain.name, heroes()); // Assuming this is what you want
                 addDefeatedClass('hero', hero.id);
             }
         }
@@ -127,21 +126,11 @@ function addDefeatedClass(type, id) {
         element.classList.add('defeated');
     }
 }
-
-// Function to add "defeated" class to a hero or villain
-function addDefeatedClass(type, id) {
-    let element;
-    if (type === 'hero') {
-        element = superHeroes[id];
-    } else if (type === 'villain') {
-        element = document.querySelector(`.villain[data-id="${id}"]`);
-    }
-    
-    if (element) {
-        element.classList.add('defeated');
-    }
+function lookupHero(name, heroes) {
+    const foundHero = heroes.find(hero => hero.name === name);
+    console.log(`Looking up hero ${name}:`, foundHero);
+    return foundHero;
 }
-
 
 // Event listener for DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
