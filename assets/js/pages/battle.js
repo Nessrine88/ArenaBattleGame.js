@@ -116,7 +116,7 @@ function arenaFight() {
 
     // Add 'defeated' class to losers
     document.querySelectorAll('.fighter').forEach(fighter => {
-        const fighterName = fighter.dataset.name; // Assuming you use data-name to store the fighter's name
+        const fighterName = fighter.dataset.name;
         const isLoser = losers.some(loser => loser.name === fighterName);
         
         if (isLoser) {
@@ -124,9 +124,23 @@ function arenaFight() {
         }
     });
 
-    // Store winners and losers in localStorage
-    localStorage.setItem('winners', JSON.stringify(winners));
+    // Retrieve previous winners from localStorage
+    const previousWinners = JSON.parse(localStorage.getItem('winners')) || [];
 
+    // Combine previous winners with current winners
+    const updatedWinners = [...previousWinners, ...winners];
+
+    // Store updated winners in localStorage
+    localStorage.setItem('winners', JSON.stringify(updatedWinners));
+}
+
+// Retrieve winners from localStorage (if needed)
+function retrieveWinners() {
+    const winnersJSON = localStorage.getItem('winners');
+    if (winnersJSON) {
+        return JSON.parse(winnersJSON);
+    }
+    return [];
 }
 
 

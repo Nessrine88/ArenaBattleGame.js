@@ -20,14 +20,6 @@
 
 // /* your functions */
 
-// Initialize _hallOfFame from localStorage on page load
-// Define functions that use render_heroData
-// Hall of Fame Management
-// Hall of Fame Management
-// Hall of Fame Management
-let _hallOfFame = [];
-
-// Initialize _hallOfFame from localStorage on page load
 
 // Helper function to lookup a hero by name
 function lookupHero(name, heroes) {
@@ -43,10 +35,11 @@ function initializeHallOfFame() {
 
     if (savedHallOfFame) {
         _hallOfFame = JSON.parse(savedHallOfFame);
-        console.log('winners', _hallOfFame);
+        const topHeroesSliced = _hallOfFame.slice(0,getConfigHallOfFame())
+        console.log('winners', topHeroesSliced);
 
         // Assuming heroes() returns a list of all possible heroes
-        _hallOfFame.forEach(element => {
+        topHeroesSliced.forEach(element => {
             const hero = lookupHero(element.name, heroes());
             if (hero) {
                 topHeroes.push(hero);
