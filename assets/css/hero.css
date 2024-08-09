@@ -201,4 +201,15 @@ body {
 
   #hall-of-fame {
     display: flex;
+    padding: 40px;
+  }
+
+  /*implementthe ranks of every winner */
+
+  .hall-of-fame-ele .win-count{
+    background-color: #E5E3E1;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+   
   }

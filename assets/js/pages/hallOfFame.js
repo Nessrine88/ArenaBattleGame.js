@@ -5,15 +5,16 @@
 
 /* your functions */
 
-function initHallOfFameSection(){    
-   const hallOffames = initializeHallOfFame()
-   console.log(hallOffames);
+
+
+// function initHallOfFameSection() {    
+//     const hallOffames = initializeHallOfFame();
   
-    render_heroData("#hall-of-fame",hallOffames)
-   
-    
-    
-}
-document.addEventListener('DOMContentLoaded',()=> {
-    initHallOfFameSection();
-})
+//     render_heroData("#hall-of-fame", hallOffames);
+
+
+// }
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     initHallOfFameSection();
+// });
