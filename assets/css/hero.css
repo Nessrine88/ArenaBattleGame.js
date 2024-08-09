@@ -198,3 +198,7 @@ body {
     margin: 0 5px;
     border-radius: 4px; /* Rounds the corners */
   }
+
+  #hall-of-fame {
+    display: flex;
+  }
