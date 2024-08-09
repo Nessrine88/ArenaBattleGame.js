@@ -36,7 +36,7 @@ function activateSection(pageId) {
 
     const pageToShow = document.getElementById(pageId);
     if (pageToShow) {
-        pageToShow.style.display = 'block';
+        pageToShow.style.display = '';
     } else {
         console.error(`Page with id '${pageId}' not found.`);
     }
